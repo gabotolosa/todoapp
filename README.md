@@ -16,3 +16,10 @@
 #### 5. Eliminar una tarea
 
 ### RNF: Usar Spring Boot, H2 y Swagger
+
+
+
+#### `OpenAPI definition Swagger` <http://localhost:8080/swagger-ui/index.html#/>
+
+
+#### `Ruta base datos H2` <http://localhost:8080/h2-console>
