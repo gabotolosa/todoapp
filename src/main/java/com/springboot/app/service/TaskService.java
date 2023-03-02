@@ -6,6 +6,7 @@ import com.springboot.app.persistence.entity.TaskStatus;
 import com.springboot.app.persistence.repository.TaskRepository;
 import com.springboot.app.service.dto.TaskRequestDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,5 +32,10 @@ public class TaskService {
 
     public List<Task> findByAllTaskStatus(TaskStatus status){
         return this.repository.findAllByTaskStatus(status);
+    }
+
+    @Transactional
+    public void updateTaskFinished(Long id){
+        this.repository.markTaskAsFinish(id);
     }
 }

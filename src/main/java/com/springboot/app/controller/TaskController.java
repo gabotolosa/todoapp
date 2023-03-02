@@ -3,8 +3,10 @@ import com.springboot.app.persistence.entity.Task;
 import com.springboot.app.persistence.entity.TaskStatus;
 import com.springboot.app.service.TaskService;
 import com.springboot.app.service.dto.TaskRequestDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -30,5 +32,11 @@ public class TaskController {
     @GetMapping("/status/{status}")
     public List<Task> findAllByTaskStatus(@PathVariable("status") TaskStatus status){
         return this.taskService.findByAllTaskStatus(status);
+    }
+
+    @PatchMapping("/mark_as_finished/{id}")
+    public ResponseEntity<Void> markAsFinished(@PathVariable("id") Long id){
+        this.taskService.updateTaskFinished(id);
+        return ResponseEntity.noContent().build();
     }
 }
