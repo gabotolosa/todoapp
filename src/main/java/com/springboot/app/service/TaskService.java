@@ -7,8 +7,10 @@ import com.springboot.app.persistence.entity.TaskStatus;
 import com.springboot.app.persistence.repository.TaskRepository;
 import com.springboot.app.service.dto.TaskRequestDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,5 +46,13 @@ public class TaskService {
             throw new ToDoExceptions("Task not found (Tarea no encontrada)", HttpStatus.NOT_FOUND);
         }
         this.repository.markTaskAsFinish(id);
+    }
+
+    public void deleteById(Long id){
+        Optional<Task> optionalTask = this.repository.findById(id);
+        if (optionalTask.isEmpty()){
+            throw new ToDoExceptions("Task not found (Tarea no encontrada)", HttpStatus.NOT_FOUND);
+        }
+        this.repository.deleteById(id);
     }
 }
