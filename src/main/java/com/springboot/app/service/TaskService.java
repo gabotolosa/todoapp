@@ -2,6 +2,7 @@ package com.springboot.app.service;
 
 import com.springboot.app.mapper.TaskRequestDtoToTask;
 import com.springboot.app.persistence.entity.Task;
+import com.springboot.app.persistence.entity.TaskStatus;
 import com.springboot.app.persistence.repository.TaskRepository;
 import com.springboot.app.service.dto.TaskRequestDto;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,9 @@ public class TaskService {
 
     public List<Task> findAll(){
         return this.repository.findAll();
+    }
+
+    public List<Task> findByAllTaskStatus(TaskStatus status){
+        return this.repository.findAllByTaskStatus(status);
     }
 }
