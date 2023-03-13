@@ -12,11 +12,11 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     //aplicando sprindata jpa
-    public List<Task> findAllByTaskStatus(TaskStatus status);
+    List<Task> findAllByTaskStatus(TaskStatus status);
 
     //metodo para marcar tarea finalizada
     @Modifying
     @Query(value = "UPDATE TASK SET FINISHED=TRUE WHERE ID=:id", nativeQuery = true)
-    public void markTaskAsFinish(@Param("id") Long id);
+    void markTaskAsFinish(@Param("id") Long id);
 
 }
